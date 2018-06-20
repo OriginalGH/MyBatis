@@ -18,6 +18,7 @@ import com.mybatis.po.UserInfo;
 public class MyBatisTest {
 	private SqlSessionFactory sessionFactory;
 	private SqlSession sqlSession;
+	
 	@Before
 	public void init(){
 		try {
@@ -25,7 +26,6 @@ public class MyBatisTest {
 			sessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 			sqlSession = sessionFactory.openSession();
 		} catch (IOException e) {
-			
 			e.printStackTrace();
 		}
 	}
@@ -46,7 +46,7 @@ public class MyBatisTest {
 	}
 	@Test
 	public void testGetUser(){
-		List<UserInfo>users = sqlSession.selectList("getUsers");
+		List<UserInfo> users = sqlSession.selectList("getUsers");
 		System.out.println(users);
 	}
 	@Test
@@ -56,11 +56,10 @@ public class MyBatisTest {
 		sqlSession.update("updateUserInfo",userInfo);
 		System.out.println(userInfo);
 	}
-	
 	@Test
-	public void testdel(){
+	public void testDel(){
 		int userInfo = sqlSession.delete("deleteUser",30);
-		System.out.println(userInfo);
+		System.out.println(userInfo+" ggg");
 	}
 	
 	
